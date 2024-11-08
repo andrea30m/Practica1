@@ -9,10 +9,12 @@ public class Practica1 {
         // ¿Apartado de "estás seguro de tu elección?
         // 5. Crear un enemigo
 
+        // Declaración de Scanner y variables
         Scanner sc = new Scanner(System.in);
-        String personaje;
-        int vida, ataque, defensa;
+        String personaje, dibujo = "";
+        int vida, ataque, defensa, vida_enemigo, ataque_enemigo, defensa_enemigo;
 
+        // Presentación del juego
         System.out.println("Bienvenido/a a JavaQuest: Un nuevo comienzo");
         System.out.println("En este juego te enfrentarás al peor enemigo del Reino Aetheria");
         System.out.println("¿Estás preparado?");
@@ -25,63 +27,52 @@ public class Practica1 {
         System.out.println("****************************************");
         System.out.println("¿En quién te quieres convertir?");
 
-        personaje = sc.nextLine();
+        // Usuario decide el personaje. Convertimos a minúsculas para que no haya problemas
+        personaje = sc.nextLine().toLowerCase();
 
-        // PARA ASEGURARNOS DE QUE ELIJA UN PERSONAJE DE LOS PRESENTADOS
-        while (!(personaje.equalsIgnoreCase("guerrero") || personaje.equalsIgnoreCase("mago") || personaje.equalsIgnoreCase("arquero"))) {
+        // Controlar que elija correctamente un personaje de los disponibles
+        while (!(personaje.equals("guerrero") || personaje.equals("mago") || personaje.equals("arquero"))) {
             System.out.println("Este personaje no se encuentra en el Reino. Tienes que elegir entre los presentados.");
             personaje = sc.nextLine();
         }
         System.out.println("Personaje elegido correctamente");
 
-        // ASIGNAR LAS CARACTERISTICAS SEGUN EL PERSONAJE
+        // Asignar las características segun el personaje
         switch (personaje) {
-            case "Guerrero":
+            case "guerrero":
                 vida = 70;
                 ataque = 80;
                 defensa = 60;
+                dibujo = "(Dibujo guerrero)"; // Agregar aquí el dibujo https://www.asciiart.eu/
                 break;
-            case "Mago":
+            case "mago":
                 vida = 50;
                 ataque = 60;
                 defensa = 50;
+                dibujo = "(Dibujo mago)"; // Agregar aquí el dibujo https://www.asciiart.eu/
                 break;
-            case "Arquero":
+            case "arquero":
                 vida = 60;
                 ataque = 90;
                 defensa = 40;
+                dibujo = "(Dibujo arquero)"; // Agregar aquí el dibujo https://www.asciiart.eu/
                 break;
         }
 
+        // Mostrar personaje elegido
         System.out.println("Tu personaje es: " + personaje);
+        System.out.println(dibujo);
 
-        // Dibujo
+        // ENEMIGO: con % de características aleatorias
+        vida_enemigo = (int) (Math.random()*51) + 50;  // Numero aleatorio entre 50 y 100
+        ataque_enemigo = (int) (Math.random()*51) + 50;
+        defensa_enemigo = (int) (Math.random()*51) + 50;
 
-        System.out.println("                    ____ \n" +
-                "                  .'* *.'\n" +
-                "               __/_*_*(_\n" +
-                "              / _______ \\\n" +
-                "             _\\_)/___\\(_/_ \n" +
-                "            / _((\\- -/))_ \\\n" +
-                "            \\ \\())(-)(()/ /\n" +
-                "             ' \\(((()))/ '\n" +
-                "            / ' \\)).))/ ' \\\n" +
-                "           / _ \\ - | - /_  \\\n" +
-                "          (   ( .;''';. .'  )\n" +
-                "          _\\\"__ /    )\\ __\"/_\n" +
-                "            \\/  \\   ' /  \\/\n" +
-                "             .'  '...' ' )\n" +
-                "              / /  |  \\ \\\n" +
-                "             / .   .   . \\\n" +
-                "            /   .     .   \\\n" +
-                "           /   /   |   \\   \\\n" +
-                "         .'   /    b    '.  '.\n" +
-                "     _.-'    /     Bb     '-. '-._ \n" +
-                " _.-'       |      BBb       '-.  '-. \n" +
-                "(_________(______.dBBBb.________)____)");
-
-
-        System.out.println();
-
+        System.out.println("Tu enemigo es un Troll con las siguientes características:");
+        System.out.println("***************************");
+        System.out.println("* Vida: " + vida_enemigo + "                *");
+        System.out.println("* Ataque: " + ataque_enemigo + "              *");
+        System.out.println("* Defensa: " + defensa_enemigo + "             *");
+        System.out.println("***************************");
     }
 }
